@@ -1,0 +1,22 @@
+server:
+  port: 8085
+spring:
+  # dubbo的配置
+  dubbo:
+    application: passport-web                        # dubbo中的服务名称
+    protocol:
+      name: dubbo                                 # dubbo的通讯协议名称
+    registry:
+      address: 192.168.126.129:2181               # zookeeper注册中心地址
+      protocol: zookeeper                         # zookee的通讯协议名称
+    base-package: com.atguigu.gmall               # dubbo 的服务扫描路径
+    consumer:
+      timeout: 600000                             # 设置超时时间
+      check: false                                # 设置是否检查服务存在，这样可以consumer先启动起来，不用检查提供者
+  thymeleaf:
+    cache: false                                 #关闭 themleaf的缓存 (热部署)
+    mode: LEGACYHTML5                             #松校验
+
+logging:
+  level:
+    root: info

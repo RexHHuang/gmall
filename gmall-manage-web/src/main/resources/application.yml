@@ -1,0 +1,26 @@
+server:
+  port: 8081
+spring:
+  # dubbo的配置
+  dubbo:
+    application: manage-web                        # dubbo中的服务名称
+    protocol:
+      name: dubbo                                 # dubbo的通讯协议名称
+    registry:
+      address: 192.168.126.129:2181               # zookeeper注册中心地址
+      protocol: zookeeper                         # zookee的通讯协议名称
+    base-package: com.atguigu.gmall               # dubbo 的服务扫描路径
+    consumer:
+      timeout: 600000                             # 设置超时时间
+      check: false                                # 设置是否检查服务存在，这样可以consumer先启动起来，不用检查提供者
+logging:
+  level:
+    root: info
+fdfs:
+  so-timeout: 1501
+  connect-timeout: 601   # 连接超时时间
+  thumb-image:   # 缩略图
+    width: 60
+    height: 60
+  tracker-list:   #tracker 地址
+    - 192.168.126.129:22122

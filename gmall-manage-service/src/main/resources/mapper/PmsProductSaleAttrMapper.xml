@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.atguigu.gmall.manage.mapper.PmsProductSaleAttrMapper">
+    
+    <resultMap id="spuSaleAttrsMap" type="com.atguigu.gmall.bean.PmsProductSaleAttr">
+        <result property="id" column="a_id"></result>
+        <result property="productId" column="product_id"></result>
+        <result property="saleAttrId" column="sale_attr_id"></result>
+        <result property="saleAttrName" column="sale_attr_name"></result>
+
+        <collection property="spuSaleAttrValueList" ofType="com.atguigu.gmall.bean.PmsProductSaleAttrValue">
+            <result property="id" column="b_id"></result>
+            <result property="productId" column="product_id"></result>
+            <result property="saleAttrId" column="sale_attr_id"></result>
+            <result property="saleAttrValueName" column="sale_attr_value_name"></result>
+            <result property="isChecked" column="isChecked"></result>
+        </collection>
+    </resultMap>
+
+    <select id="selectSpuSaleAttrListCheckBySku" resultMap="spuSaleAttrsMap">
+        select
+          a.id as a_id, a.product_id, a.sale_attr_id, a.sale_attr_name, b.id as b_id, b.sale_attr_value_name, if (c.sku_id, 1, 0) as isChecked
+        from
+          pms_product_sale_attr a
+        INNER JOIN pms_product_sale_attr_value b on a.sale_attr_id = b.sale_attr_id
+        and a.product_id = #{spuId}
+        and a.product_id = b.product_id
+        LEFT JOIN pms_sku_sale_attr_value c on c.sale_attr_value_id = b.id
+        and c.sku_id = #{skuId};
+    </select>
+</mapper>

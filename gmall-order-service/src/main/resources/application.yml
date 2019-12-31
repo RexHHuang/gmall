@@ -1,0 +1,39 @@
+server:
+  port: 8076
+activemq:
+  listener:
+    enable: true    # 开启监听
+spring:
+  activemq:
+    broker-url: tcp://192.168.126.129:61616
+  redis:
+    host: 192.168.126.129
+    port: 6379
+    database: 0
+  datasource:
+    username: root
+    password: 123456
+    url: jdbc:mysql://localhost:3306/gmall
+  # dubbo的配置
+  dubbo:
+    application: order-service                    # dubbo中的服务名称
+    protocol:
+      name: dubbo                                 # dubbo的通讯协议名称
+    registry:
+      address: 192.168.126.129:2181               # zookeeper注册中心地址
+      protocol: zookeeper                         # zookee的通讯协议名称
+    base-package: com.atguigu.gmall               # dubbo 的服务扫描路径
+
+# mybatis 配置
+mybatis:
+  mapper-locations: classpath:mapper/*Mapper.xml
+  configuration:
+    map-underscore-to-camel-case: true
+logging:
+  level:
+    root: info
+
+
+
+
+

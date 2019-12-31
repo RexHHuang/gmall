@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" >
+    <title>Title</title>
+</head>
+<body>
+    <h1>welcome to thymeleaf page!</h1>
+    <a th:href="'javascript:a(\'' + ${hello} + '\');'">点我</a>
+
+    <script language="JavaScript">
+        function a(str) {
+            alert("js的函数被调用：" + str);
+        }
+    </script>
+</body>
+</html>
